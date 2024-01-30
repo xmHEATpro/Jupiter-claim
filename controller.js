@@ -1,9 +1,10 @@
 const { sleep, formatTime, colors, settings } = require('./helper.js');
-const { customFee } = require('./settings.js');
 const { createDriver } = require('./webdriver.js');
 const { By, until } = require('selenium-webdriver');
 
 const threads = settings.threads;
+const customFee = settings.customFee;
+const customRpc = settings.customRpc;
 const seedPhrases = settings.seedPhrases;
 const link = 'https://lfg.jup.ag'
 
@@ -11,14 +12,14 @@ async function controller(seed, tNum, sNum){
     try{
         let driver = await createDriver(tNum, sNum)
         if(driver){
-            console.log(colors.green(`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Webdriver was created for solana!`))
+            console.log(colors.green(`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Webdriver was created!`))
             let importWalletRes = await importWallet(driver, seed)
             if(importWalletRes){
-                console.log(colors.green(`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Seed was imported to solana wallet!`))
+                console.log(colors.green(`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Seed was imported!`))
                 let page = await connectToPage(driver, tNum, sNum)
                 if(page){
                     console.log(colors.green(`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Wallet is connected, go to check details!`))
-                    await handleClaim(driver, tNum, sNum)
+                    handleClaim(driver, tNum, sNum)
                 }else{
                     console.log(colors.red(`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Wallet is not connected`))
                     driver.quit()
@@ -30,7 +31,7 @@ async function controller(seed, tNum, sNum){
                 return
             }
         }else{
-            console.log((`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] No found driver for solana`))
+            console.log((`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] No found driver`))
             return
         }
     }catch(e){
@@ -120,7 +121,7 @@ async function connectToPage(driver, tNum, sNum){
         await connect.click();
 
         await sleep(2000)
-        
+
         const handles = await driver.getAllWindowHandles();
         await driver.switchTo().window(handles[0]);
                 

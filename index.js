@@ -7,12 +7,11 @@ async function initiate(){
     try{
         if(threads && seedPhrases){
             if(seedPhrases.length>0){
-
                 console.log(colors.yellow(`${formatTime(new Date())}| Seeds: ${seedPhrases.length} | Threads: ${threads} | Total windows: ${threads*seedPhrases.length}`))
                 try{
                     for(let s=0;s<seedPhrases.length;s++){
                         for(let i=0;i<threads;i++){
-                                await controller(seedPhrases[s], i, s)
+                                controller(seedPhrases[s], i, s)
                         }
                     }
                 }catch(e){
