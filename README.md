@@ -37,7 +37,7 @@ You can specify multiple phrases in array format, like this.
         "tip regret math defense dragon glad harsh address book invite pencil bunker",
         "creek bleak list dwarf suit punch coin primary retreat devote alarm forum",
         "media brisk stand victory hurry hard tennis slim call kit system aerobic"
-],
+]
 
 ### CustomFee
 
@@ -48,5 +48,7 @@ Fee for claim, no more than 2 sol.
 Don't change it if you don't know what it is. Jupiter itself will choose the fastest one available.
 
 
-Feel free to make donation <3
+
+> [!TIP]
+> Feel free to make donation <3
 ```GBo3t5rJiS8M6Eq3VFzKXM4TF2UGTQX1XMbSDLAhDLXE```
