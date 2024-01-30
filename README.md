@@ -43,7 +43,7 @@ You can specify multiple phrases in array format, like this.
 
 Fee for claim, no more than 2 sol.
 
-### customRpc
+### CustomRpc
 
 Don't change it if you don't know what it is. Jupiter itself will choose the fastest one available.
 
