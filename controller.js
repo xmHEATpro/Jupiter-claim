@@ -136,16 +136,39 @@ async function handleClaim(driver, tNum, sNum){
     console.log((`${formatTime(new Date())}| [Thread#${tNum+1}/${threads} | Wallet#${sNum+1}/${seedPhrases.length}] Checking for details...`))
     await sleep(1000)
 
-    if(customFee==``){
 
-    }else{
-        
+
+    if(customRpc!==`none`){
+        try{
+            let settingsBtn = await driver.wait(until.elementLocated(By.xpath(`//*[@id="__next"]/div[3]/div[1]/div/div[2]/div[1]/div/div/button`)), 5000); 
+            await settingsBtn.click();
+    
+            let customRpcField = await driver.wait(until.elementLocated(By.xpath(`//*[@id="tooltip"]/div/div[5]/div/input`)), 5000); 
+            await customRpcField.sendKeys(customRpc);
+            try{
+                let customRpcBtn = await driver.wait(until.elementLocated(By.xpath(`//*[@id="tooltip"]/div/div[5]/label[5]/p`)), 5000); 
+                await customRpcBtn.click();
+            }catch{}
+
+            let settingsExitBtn = await driver.wait(until.elementLocated(By.xpath(`//*[@id="__next"]/div[3]/div[1]/div/div[2]/div[1]/div/div/button`)), 5000); 
+            await settingsExitBtn.click();
+    
+        }catch(e){
+            console.log(e)
+        }
     }
 
-    if(customRpc==``){
+    if(customFee!==`0.001`){
+        try{
+            let customFeeField = await driver.wait(until.elementLocated(By.xpath(`//*[@id="__next"]/div[3]/div[2]/div[9]/div/div[1]/div/div[2]/div[2]/div/div/input`)), 5000); 
+            await customFeeField.clear();
+            await customFeeField.sendKeys(customFee);
+            let settingsBtn = await driver.wait(until.elementLocated(By.xpath(`//*[@id="__next"]/div[3]/div[2]/div[9]/div/div[1]/div/div[2]/div[2]/div/div/button`)), 5000); 
+            await settingsBtn.click();
+        }catch(e){
+            console.log(e)
+        }
 
-    }else{
-        
     }
 
     let timeEl = await driver.wait(until.elementLocated(By.xpath(`//*[@id="__next"]/div[3]/div[2]/div[2]/div/p[1]/span`)), 5000); 
