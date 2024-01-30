@@ -16,8 +16,8 @@ Using solflare because its have auto-approve. Can claim from multiply wallets wi
 ## 💡 Features
 - [x] Threads
 - [x] Multiply wallets
-- [ ] Custom node 
-- [ ] Custom fee 
+- [x] Custom node 
+- [x] Custom fee 
 ## 🛠️ Settings
 
 > [!TIP]
