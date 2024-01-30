@@ -99,7 +99,7 @@ async function connectToPage(driver, tNum, sNum){
         let solflare = await driver.wait(until.elementLocated(By.xpath(`//*[@id="__next"]/dialog/div/div[3]/div[1]/div/span`)), 5000); 
         await solflare.click();
 
-        await sleep(3000)
+        await sleep(10000)
 
         const windowHandles = await driver.getAllWindowHandles();
         let windowHandleIndex = 0;
@@ -120,7 +120,7 @@ async function connectToPage(driver, tNum, sNum){
         let connect = await driver.wait(until.elementLocated(By.xpath(`/html/body/div[2]/div[2]/div/div[3]/div/button[2]/span`)), 5000); 
         await connect.click();
 
-        await sleep(2000)
+        await sleep(10000)
 
         const handles = await driver.getAllWindowHandles();
         await driver.switchTo().window(handles[0]);
